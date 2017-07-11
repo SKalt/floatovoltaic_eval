@@ -7,6 +7,13 @@ from datetime import datetime, timedelta
 from tqdm import tqdm
 #%%
 def fetch(target):
+    """Retrieve the target page within ciel-et-terre.net.
+
+    :param target: 
+    :returns: a page within ciel-et-terre.net
+    :rtype: lxml.html.HtmlElement
+
+    """
     if not re.match(r'^http://www.ciel-et-terre.net', target):
         if not re.match('^/', target):
             target = '/' + target
@@ -18,6 +25,13 @@ def fetch(target):
         raise ValueError('Status code {}'.format(fetched.status_code))
         
 def get_page(li):
+    """Fetch the page associated with a solar portolio list item.
+
+    :param li: a list item containing a link to the solar project page.
+    :returns: a html page of one portfolio project
+    :rtype: lxml.html.HtmlElement
+
+    """
     try:
         a = li.cssselect('a.eg-washington-element-10')[0]
         href = a.get('href')
@@ -48,6 +62,14 @@ def search(regex_pattern, text):
         return None
 
 def parse_basic(text, title):
+    """Finds fields of interest within the first paragraph
+
+    :param text: str, text to process
+    :param title: str, the title of the solar project
+    :returns: None
+    :rtype: None
+
+    """
     df.loc[title, 'kWp'] = search(r'(\d+) kWp', text)
     df.loc[title, 'location'] = search(
         r'installed on [^,]+,(?: located in )?([^\n]+)\.?\n', text
@@ -55,6 +77,14 @@ def parse_basic(text, title):
     df.loc[title, 'water_body_type'] = search(r'installed on ([^,\.]+),', text)
     
 def parse_system(text, title):
+    """Finds fields of interest within the second paragraph
+
+    :param text: str, text to process
+    :param title: str, the title of the solar project
+    :returns: None
+    :rtype: None
+
+    """
     df.loc[title, 'panel_number'] = search(r'(\d+) panels', text)
     df.loc[title, 'panel_type'] = search(r'\(([^\)]+(?:modules|panels))', text)
     df.loc[title, 'covers_pct'] = search(r'covers (?:about )?([^%]+) ?%', text)
@@ -76,10 +106,26 @@ def parse_system(text, title):
     df.loc[title, 'covers_total'] = covers_total
     
 def parse_advanced(text, title):
+    """Finds fields of interest within the thrid paragraph
+
+    :param text: str, text to process
+    :param title: str, the title of the solar project
+    :returns: None
+    :rtype: None
+
+    """
     df.loc[title, 'max_depth'] = search(r'a maximum depth of (\S+) m', text)
     df.loc[title, 'level_variation'] = search(r'variation of (\S+) m', text)
     
 def parse_date(text, title):
+    """Finds fields of interest within the fourth paragraph
+
+    :param text: str, text to process
+    :param title: str, the title of the solar project
+    :returns: None
+    :rtype: None
+
+    """
     interconnect_str = search(r'effective in ((?:\w+ ){0,1}\d+)', text)
     try:
         interconnect_date = datetime.strptime(interconnect_str, '%B %Y')
@@ -104,6 +150,14 @@ def parse_page(page, title):
         parse_date(text, title)
     
 def download_page(li, title):
+    """Download a page from ciel-et-terre.net from a link within a li.
+
+    :param li: a lxml.html.HtmlElement list item containing a link to a project page
+    :param title: a str title of a solar project
+    :returns: None
+    :rtype: None
+
+    """
     page = get_page(li)
     with open(title, 'w') as target_file:
         target_file.write(
@@ -115,6 +169,12 @@ def download_page(li, title):
     last_downloaded.to_csv('last_downloaded.csv')
     
 def get_projects():
+    """Download pages if necessary, then parse their contents into `df`.
+
+    :returns: None
+    :rtype: None
+
+    """
     if 'main' in last_downloaded.index:
         main = html.parse('ciel_et_terre_projects/main.html').getroot()
     else:
@@ -143,6 +203,13 @@ def get_projects():
         parse_page(page, title)
 
 def lookup(title):
+    """(diagnostic tool) get the text from a cached project page .
+
+    :param title: str file/solar project name
+    :returns: None 
+    :rtype: None
+
+    """
     with open('ciel_et_terre_projects/{}.html'.format(title)) as f:
         page = html.fromstring(f.read())
     for p in page.xpath('//div[contains(@class, "content-article")]//p/text()'):
