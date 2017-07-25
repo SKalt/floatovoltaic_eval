@@ -26,20 +26,24 @@ def fetch(target):
         raise ValueError('Status code {}'.format(fetched.status_code))
 
 
-def get_page(li):
-    """Fetch the page associated with a solar portolio list item.
-
-    :param li: a list item containing a link to the solar project page.
-    :returns: a html page of one portfolio project
-    :rtype: lxml.html.HtmlElement
-
-    """
+def get_link(li):
+    "retrieves the link from a solar portfolio list item"
     try:
         a = li.cssselect('a.eg-washington-element-10')[0]
-        href = a.get('href')
-        return fetch(href)
+        return a.get('href')
     except IndexError:
         raise IndexError('no a.eg-washington-element-10 found')
+
+
+# def get_page(li):
+#     """Fetch the page associated with a solar portolio list item.
+#
+#     :param li: a list item containing a link to the solar project page.
+#     :returns: a html page of one portfolio project
+#     :rtype: lxml.html.HtmlElement
+#
+#     """
+#     return fetch(get_link(li))
 
 
 def get_name_kwp(li):
@@ -165,17 +169,16 @@ def parse_page(page, title):
         parse_date(text, title)
 
 
-def download_page(li, title):
+def download_page(link, title):
     """Download a page from ciel-et-terre.net from a link within a li.
 
-    :param li: a lxml.html.HtmlElement list item containing a link to a project
-        page
+    :param link: a string link to a project page
     :param title: a str title of a solar project
     :returns: None
     :rtype: None
 
     """
-    page = get_page(li)
+    page = fetch(link)
     with open(title, 'w') as target_file:
         target_file.write(
             html.etree.tostring(
@@ -204,6 +207,7 @@ def get_projects():
     for li in tqdm(floating_solar_lis):
         name, kwp = get_name_kwp(li)
         title = '{}-{}'.format(name, kwp)
+        df.loc[title, 'source'] = link = get_link(li)
         file_path = 'ciel_et_terre_projects/{}.html'.format(title)
         if not os.path.exists(file_path):
             if title in last_downloaded.index:
@@ -211,11 +215,11 @@ def get_projects():
                     last_downloaded.loc[title, 'last_downloaded'], '%Y-%m'
                     )
                 if now - recency > timedelta(days=30):
-                    download_page(li, file_path)
+                    download_page(link, file_path)
                 else:
                     pass
             else:
-                download_page(li, file_path)
+                download_page(link, file_path)
         with open(file_path) as f:
             page = html.fromstring(f.read())
         parse_page(page, title)
