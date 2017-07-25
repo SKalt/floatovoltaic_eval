@@ -1,0 +1,41 @@
+,kWp,location,water_body_type,panel_number,panel_type,covers_pct,covers_panels,covers_total,max_depth,level_variation,interconnection_date,construction_duration
+ORLANDO UTILITIES-32 kWp,32,"Orlando, the U.S.A.",an irrigation reservoir,100,315 Wp RENESOLA modules,2.9,0.44,1.22,3.0,0.45,2017-02-01 00:00:00,
+MIRAFLORES-24 kWp,24," the Panama Canal, in Panama.",a water retention pond,96,250 Wp TRINA modules,0.2,0.03,14.4,,,2017-02-01 00:00:00,
+GOJIGA-IKE - 572 kWp,572,"Hyogo prefecture, Japan.",an irrigation pond,2200,260 Wp JINKO modules,28.0,0.64,2.32,2.4,2.4,2017-01-01 00:00:00,
+SAKURAKAMI-IKE - 1992 kWp,1992,"Hyogo prefecture, Japan.",an irrigation reservoir,7810,255 Wp YINGLI modules,35.0,2.49,7.04,8.4,8.4,2016-12-01 00:00:00,
+ALTO RABAGAO-218 kWp,218,"Montalegre, Portugal.",a hydroelectric dam,840,260 Wp REC modules,0.01,0.26,2212.0,90.0,30.0,2016-11-01 00:00:00,
+Ulu Sepri-270 kWp,270,Malaysia.,an irrigation reservoir,900,300 Wp BLUESUN modules,1.5,0.27,17.94,45.6,17.5,2016-11-01 00:00:00,
+ISAWA-IKE - 632 kWp,632,"Tokushima prefecture, Japan",an irrigation pond,2340,270 Wp KYOCERA modules,57.0,0.68,1.19,6.0,6.0,2016-10-01 00:00:00,
+Hirono Shin-Ike - 1751 kWp,1751,"Hyogo prefecture, Japan.",an irrigation reservoir,7005,250 Wp SHARP modules,54.0,1.92,3.53,7.8,5.1,2016-09-01 00:00:00,
+TSUGA-IKE - 2449 kWp,2449,"Susuka city, Mie prefecture, Japan",an irrigation reservoir,9072,270 Wp KYOCERA modules,27.0,2.48,9.21,7.2,7.2,2016-07-01 00:00:00,56.0
+KOBE OIKE-1212 kWp,1212,"Kobe city, Hyogo prefecture, Kansai, Japan",an irrigation reservoir,4752,255 Wp YINGLI modules,15.0,1.29,8.44,5.6,3.0,2016-05-01 00:00:00,56.0
+GONO-IKE - 1203 kWp,1203,"Kobe city, Hyogo prefecture, Kansai, Japan",an irrigation reservoir,4716,255 Wp YINGLI modules,32.0,1.28,3.99,5.6,3.0,2016-05-01 00:00:00,56.0
+RENGEJI-300 kWp,300,"Fukuoka city, Fukuoka prefecture, Kansai, Japan",an water storage pond,200,250 Wp ZNShine Solar modules,44.0,0.35,0.79,5.3,5.3,2016-07-01 00:00:00,42.0
+PARK FARM-100 kWp,100,"Wrentham village, Suffolk, UK.",an irrigation pond,400,250 Wp REC modules,2.53,0.11,4.34,4.3,4.3,2015-12-01 00:00:00,14.0
+KEENS FARM-100 kWp,100,"Covehithe village, Suffolk, UK.",an irrigation pond,400,250 Wp REC modules,6.32,0.11,1.74,7.9,7.9,2015-12-01 00:00:00,14.0
+WOODLANE-100 kWp,100,"Benacre village,  Suffolk, UK.",an irrigation pond,400,250 Wp REC modules,1.58,0.11,6.97,5.5,5.5,2015-12-01 00:00:00,14.0
+PONTECORVO-343 kWp,20,"Sant’Ermete, Province of Savona, Italy.",an irrigation pond,1320,260 Wp PEIMAR modules,43.18,0.38,0.88,5.5,5.5,2016-03-01 00:00:00,63.0
+SUNGAI LABU-108 kWp,108,"Sepang city, Selango, Malaysia.",a water treatment pond,432,250 Wp ET SOLAR modules,3.57,0.15,4.2,27.0,20.0,2015-11-01 00:00:00,7.0
+SOHARA-IKE - 2398 kWp,60,"Matsusaka city, Mie prefecture, Chubu, Japan.",an irrigation pond,8880,270 Wp MITSUBISHI modules,68.89,2.48,3.6,1.8,1.8,2016-03-01 00:00:00,140.0
+NAGA-IKE NISHI - 1078 kWp,1078,"Fukuzaki district, Hyogo prefecture, Kansai, Japan.",an irrigation pond,4312,250 Wp SHARP modules,18.95,1.19,6.28,4.8,4.8,2016-03-01 00:00:00,105.0
+SAKURASHITA-IKE - 809 kWp,50,"Fukuzaki district, Hyogo prefecture, Kansai, Japan.",an irrigation pond,3234,250 Wp SHARP modules,28.13,0.92,3.27,4.4,4.4,2016-02-01 00:00:00,77.0
+KAWARAYAMA-IKE - 1428 kWp,1428," Inami town, Hyogo prefecture, Kansai, Japan.",an irrigation pond,5712,250 Wp SHARP modules,23.11,1.59,6.88,6.4,6.4,2015-12-01 00:00:00,84.0
+POLYBELL-471 kWp,24,"Gringley-on-the-hill village, South Yorkshire, UK.",an irrigation pond,1848,255 Wp REC modules,10.57,0.5,4.73,3.9,3.9,2015-12-01 00:00:00,28.0
+QE2-6338 kWp,65,"Walton-on-Thames town, Surrey, UK.",a water treatment pond,23046,270Wp SUNTECH modules,4.65,5.95,128.0,18.4,18.4,2016-03-01 00:00:00,91.0
+GODLEY-2991 kWp,79,"Godley city, Greater Manchester, England.",a water treatment pond,10494,285Wp JA SOLAR modules,47.68,2.78,5.83,9.9,9.9,2016-01-01 00:00:00,105.0
+UMENOKI-7550 kWp,4," located near Higashimatsuyama city, Saitama prefecture, Kanto, Japan.",an irrigation pond,27456,275Wp YINGLI modules,57.46,7.43,12.93,6.9,6.9,2015-10-01 00:00:00,154.0
+FUNATSU OSAWA-1485 kWp,1485,"Himeji city, Hyogo prefecture, Kansai, Japan.",an irrigation pond,5940,250Wp YINGLI modules,14.49,1.69,11.66,8.3,8.3,2015-09-01 00:00:00,42.0
+HANAMIDAI-1153 kWp,11," located near Higashimatsuyama city, Saitama prefecture, Kanto, Japan.",a rain water retention pond,4522,255Wp KYOCERA modules,85.71,1.26,1.47,4.9,4.9,2015-08-01 00:00:00,91.0
+HIRAI-IKE - 1125 kWp,1125,"Tenri city, Nara prefecture, Kansai, Japan.",an irrigation pond,4500,250Wp TRINA modules,64.62,1.26,1.95,2.7,2.7,2015-08-01 00:00:00,70.0
+SAWA-IKE - 1008 kWp,1008," located near Ono city, Hyogo prefecture, Kansai, Japan.",an irrigation pond,4032,250Wp TRINA modules,72.15,1.14,1.58,4.7,4.7,2015-05-01 00:00:00,42.0
+KATO-SHI - 2870 kWp,28," located near Takaoka city, Hyogo prefecture, Kansai, Japan.",two irrigation ponds,11256,255Wp KYOCERA modules,59.28,3.13,5.28,5.7,5.7,2015-03-01 00:00:00,105.0
+SAKASAMA-IKE - 2313 kWp,36,"Kasai city, Hyogo prefecture, Kansai, Japan.",an irrigation pond,9072,255Wp KYOCERA modules,36.66,2.61,7.12,4.5,4.5,2015-05-01 00:00:00,77.0
+FUKU-IKE - 1076 kWp,4,"Minamiawaji city, Hyogo prefecture, Kansai, Japan.",an irrigation pond,4032,260Wp MITSUBISHI modules,71.61,1.11,1.55,2.0,2.0,2015-06-01 00:00:00,70.0
+YOTHATHIKAN-5 kWp,39,"Samut Songkhram province, Thailand.",an aquaculture pond,22,245Wp KYOCERA modules,2.94,0.01,0.34,5.0,5.0,2014-10-01 00:00:00,3.0
+O-CHANG - 495 kWp,5,"Cheongwon district, Chungcheonbuk, South Korea.",an irrigation dam,1978,250Wp HANWHA modules,1.14,0.56,49.12,93.8,8.3,2015-02-01 00:00:00,14.0
+PROTO PIOLENC-15 kWp,4,"Piolenc city, near Orange, in the south of France.",a quarry lake,64,230 & 235Wp GESOLAR modules,0.04,0.016,37.15,11.8,5.0,2011-01-01 00:00:00,7.0
+OKEGAWA-1180 kWp,36,"Okegawa city, Saitama prefecture, Kanto, Japan.",a rain water retention pond,4536,260Wp JA SOLAR modules,37.79,1.16,3.07,6.0,6.0,2013-07-01 00:00:00,42.0
+KAWAGOE-696 kWp,15,"Kawagoe city, Saitama prefecture, Kanto, Japan.",a rain water retention pond,2730,255Wp YINGLI modules,37.74,0.8,2.12,3.0,3.0,2014-06-01 00:00:00,35.0
+MAENO-IKE - 848 kWp,848,"Ono city, Hyogo prefecture, Kansai, Japan.",an irrigation pond for rice agriculture,3392,250Wp YINGLI modules,40.33,0.98,2.43,2.0,2.0,2014-09-01 00:00:00,70.0
+YASUGI-1098 kWp,6,"Yasugi city, Shimane prefecture, Chugoku, Japan.",an irrigation pond,4480,245Wp KYOCERA modules,22.16,1.25,5.64,2.4,2.4,2014-11-01 00:00:00,91.0
+SHEEPLANDS FARM-200 kWp,200," located near Wargrave city, Berkshire, United kingdom.",an irrigation pond,800,250Wp TRINA modules,14.09,0.21,1.49,6.1,6.1,2014-10-01 00:00:00,6.0
