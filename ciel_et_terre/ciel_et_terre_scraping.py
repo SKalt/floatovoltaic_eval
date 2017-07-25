@@ -5,11 +5,12 @@ import requests
 import pandas as pd
 from datetime import datetime, timedelta
 from tqdm import tqdm
-#%%
+
+
 def fetch(target):
     """Retrieve the target page within ciel-et-terre.net.
 
-    :param target: 
+    :param target:
     :returns: a page within ciel-et-terre.net
     :rtype: lxml.html.HtmlElement
 
@@ -23,7 +24,8 @@ def fetch(target):
         return html.fromstring(fetched.content.decode())
     else:
         raise ValueError('Status code {}'.format(fetched.status_code))
-        
+
+
 def get_page(li):
     """Fetch the page associated with a solar portolio list item.
 
@@ -37,21 +39,27 @@ def get_page(li):
         href = a.get('href')
         return fetch(href)
     except IndexError:
-      raise IndexError('no a.eg-washington-element-10 found')
+        raise IndexError('no a.eg-washington-element-10 found')
+
 
 def get_name_kwp(li):
     try:
         div = li.cssselect('div.esg-center.esg-flipdown')[0]
-        text = re.sub('(?i)floating solar(?: pv)? (system|plant)\W*-', '', div.text)
+        text = re.sub(
+            '(?i)floating solar(?: pv)? (system|plant)\W*-',
+            '',
+            div.text
+        )
         name, _, kwp = text.partition('-')
         return name.strip(), kwp.strip()
     except IndexError:
         raise IndexError('no title div found')
 
+
 def search(regex_pattern, text):
     if not text:
         text = ''
-    regex = re.compile(regex_pattern) # should include a group
+    regex = re.compile(regex_pattern)  # should include a group
     try:
         result = regex.search(text)
         if result:
@@ -60,6 +68,7 @@ def search(regex_pattern, text):
             return None
     except IndexError:
         return None
+
 
 def parse_basic(text, title):
     """Finds fields of interest within the first paragraph
@@ -75,7 +84,8 @@ def parse_basic(text, title):
         r'installed on [^,]+,(?: located in )?([^\n]+)\.?\n', text
         )
     df.loc[title, 'water_body_type'] = search(r'installed on ([^,\.]+),', text)
-    
+
+
 def parse_system(text, title):
     """Finds fields of interest within the second paragraph
 
@@ -101,10 +111,11 @@ def parse_system(text, title):
             covers_total = None
     else:
         covers_panels = covers_total = None
-    
+
     df.loc[title, 'covers_panels'] = covers_panels
     df.loc[title, 'covers_total'] = covers_total
-    
+
+
 def parse_advanced(text, title):
     """Finds fields of interest within the thrid paragraph
 
@@ -116,7 +127,8 @@ def parse_advanced(text, title):
     """
     df.loc[title, 'max_depth'] = search(r'a maximum depth of (\S+) m', text)
     df.loc[title, 'level_variation'] = search(r'variation of (\S+) m', text)
-    
+
+
 def parse_date(text, title):
     """Finds fields of interest within the fourth paragraph
 
@@ -136,23 +148,28 @@ def parse_date(text, title):
         )
     df.loc[title, 'interconnection_date'] = interconnect_date
     df.loc[title, 'construction_duration'] = construction_duration
-    
+
+
 def parse_page(page, title):
     ps = []
-    for p in page.xpath('//div[contains(@class, "content-article")]//p/text()'):
+    for p in page.xpath(
+        '//div[contains(@class, "content-article")]//p/text()'
+    ):
         if p:
             ps.append(p.replace(u'\xa0', ' ').strip())
-    text  = '\n'.join(ps)
+    text = '\n'.join(ps)
     if text:
         parse_basic(text, title)
         parse_system(text, title)
         parse_advanced(text, title)
         parse_date(text, title)
-    
+
+
 def download_page(li, title):
     """Download a page from ciel-et-terre.net from a link within a li.
 
-    :param li: a lxml.html.HtmlElement list item containing a link to a project page
+    :param li: a lxml.html.HtmlElement list item containing a link to a project
+        page
     :param title: a str title of a solar project
     :returns: None
     :rtype: None
@@ -167,7 +184,8 @@ def download_page(li, title):
             )
     last_downloaded.loc[title, 'last_download'] = now.date()
     last_downloaded.to_csv('last_downloaded.csv')
-    
+
+
 def get_projects():
     """Download pages if necessary, then parse their contents into `df`.
 
@@ -202,20 +220,23 @@ def get_projects():
             page = html.fromstring(f.read())
         parse_page(page, title)
 
+
 def lookup(title):
     """(diagnostic tool) get the text from a cached project page .
 
     :param title: str file/solar project name
-    :returns: None 
+    :returns: None
     :rtype: None
 
     """
     with open('ciel_et_terre_projects/{}.html'.format(title)) as f:
         page = html.fromstring(f.read())
-    for p in page.xpath('//div[contains(@class, "content-article")]//p/text()'):
-        print(p+ '\n')
-    
-    #%%
+    for p in page.xpath(
+        '//div[contains(@class, "content-article")]//p/text()'
+    ):
+        print(p + '\n')
+
+
 if __name__ == '__main__':
     now = datetime.now()
     df = pd.DataFrame(columns=[
@@ -229,23 +250,28 @@ if __name__ == '__main__':
     else:
         last_downloaded = pd.DataFrame(columns=['last_downloaded'])
     get_projects()
-    make_decimal = lambda s: float(s.replace(',', '.')) if s else None
+
+    def make_decimal(s):
+        if s:
+            return float(s.replace(',', '.'))
+
     for col in [
         'covers_pct', 'covers_panels', 'covers_total', 'max_depth',
-       'level_variation'
+        'level_variation'
        ]:
-           df[col] = df[col].apply(make_decimal)
+            df[col] = df[col].apply(make_decimal)
     df['kWp'] = df['kWp'].apply(lambda s: int(s))
     df['panel_number'] = df['panel_number'].apply(lambda s: int(s))
+
     def to_days(s):
         if s:
             m = re.match('(?P<num>\d+) (?P<name>[^s]+)s?', s)
-            delta = timedelta(**{m.group('name') + 's' : int(m.group('num'))})
+            delta = timedelta(**{m.group('name') + 's': int(m.group('num'))})
             return delta.days
         else:
             return None
     df['construction_duration'] = df['construction_duration'].apply(to_days)
-    #df['level_variation'] = df['level_variation'].apply(make_decimal)
+    # df['level_variation'] = df['level_variation'].apply(make_decimal)
 
     df.to_csv('floating_solar_dataset.csv')
     last_downloaded.to_csv('last_downloaded.csv')
