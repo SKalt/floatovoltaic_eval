@@ -256,7 +256,7 @@ if __name__ == '__main__':
     get_projects()
 
     def make_decimal(s):
-        if s:
+        if s is str:
             return float(s.replace(',', '.'))
 
     for col in [
@@ -264,8 +264,8 @@ if __name__ == '__main__':
         'level_variation'
        ]:
             df[col] = df[col].apply(make_decimal)
-    df['kWp'] = df['kWp'].apply(lambda s: int(s))
-    df['panel_number'] = df['panel_number'].apply(lambda s: int(s))
+    df['kWp'] = df['kWp'].apply(lambda s: int(s) if not pd.isnull(s) else 0)
+    df['panel_number'] = df['panel_number'].apply(lambda s: int(s) if not pd.isnull(s))
 
     def to_days(s):
         if s:
